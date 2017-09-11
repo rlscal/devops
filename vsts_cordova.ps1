@@ -16,12 +16,12 @@ fn_get_vsts_variables;
 }
 fn_display_variables;
 if ($Env:git_urlcred) {
-echo "remote set-url origin `"$Env:git_urlcred`""; #git remote set-url origin "$Env:git_urlcred" 2>&1 ;
-echo "checkout master" ; # git checkout master 2>&1 ;
-echo "git show-branch --all"; # git show-branch --all;
-echo "git config --global core.autocrlf input"; # git config --global core.autocrlf input 2>&1;
-echo "git config --global user.name `"$($Env:git_config_username)`""; # git config --global user.name "$($Env:git_config_username)";
-echo "git config --global user.email `"$($Env:git_config_email)`""; # git config --global user.email "$($Env:git_config_email)";
+echo "remote set-url origin `"$Env:git_urlcred`""; git remote set-url origin "$Env:git_urlcred" 2>&1 ;
+echo "checkout master" ; git checkout master 2>&1 ;
+echo "git show-branch --all"; git show-branch --all;
+echo "git config --global core.autocrlf input"; git config --global core.autocrlf input 2>&1;
+echo "git config --global user.name `"$($Env:git_config_username)`""; git config --global user.name "$($Env:git_config_username)";
+echo "git config --global user.email `"$($Env:git_config_email)`""; git config --global user.email "$($Env:git_config_email)";
 }
 else {
 echo "ERROR, missing or empty variable `$Env:git_urlcred";
@@ -34,9 +34,9 @@ fn_get_vsts_variables;
 fn_display_variables;
 }
 if ($Env:git_urlcred) {
-echo "git add -A"; # git add -A 2>&1;
-echo "git commit -m `"$commit_msg`""; # git commit -m "$commit_msg" 2>&1;
-echo "git push origin master"; # git push origin master 2>&1;
+echo "git add -A"; git add -A 2>&1;
+echo "git commit -m `"$commit_msg`""; git commit -m "$commit_msg" 2>&1;
+echo "git push origin master"; git push origin master 2>&1;
 }
 else {
 echo "ERROR, missing or empty variable `$Env:git_urlcred";
