@@ -1,14 +1,16 @@
 #Set-PSDebug -Trace 1;
 # Usage under VSTS project in PowerShell command line
 # 1) After 'Get Ressource' task for initialization (variable and git config):
-# (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/rlscal/devops/master/vsts_cordova.ps1", "~\vsts_cordova.ps1");
-# ~\vsts_cordova.ps1 ;
+# (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/rlscal/devops/master/vsts_cordova.ps1", "$home\vsts_cordova.ps1");
+# Import-Module -Name $home\vsts_cordova.ps1 ;
 # fn_gitinit;
 
 # 2) To commmit & push to remote GIT:
+# Import-Module -Name $home\vsts_cordova.ps1 ;
 # fn_gitcommitpush("your comment")
 
-function fn_gitinit() {
+echo "Start loading vsts_cordova.ps1"
+function global:fn_gitinit() {
 if (-Not $Env:variables_status) {
 fn_get_vsts_variables;
 }
@@ -27,7 +29,7 @@ echo "ERROR, missing or empty variable `$Env:BUILD_REPOSITORY_URI";
 }
 }
 
-function fn_gitcommitpush([string]$commit_msg) {
+function global:fn_gitcommitpush([string]$commit_msg) {
 if ($Env:git_urlcred) {
 echo "git add -A"; # git add -A 2>&1;
 echo "git commit -m `"$commit_msg`""; # git commit -m "$commit_msg" 2>&1;
@@ -38,7 +40,7 @@ echo "ERROR, missing or empty variable `$Env:git_urlcred";
 }
 }
 
-function fn_get_vsts_variables() {
+function global:fn_get_vsts_variables() {
 # define Environment variable used by this module
 $Env:variables_status="OK";
 
@@ -51,7 +53,7 @@ $Env:git_pwd=$(git_pwd); # user pwd for git remote access
 $Env:git_user=$(git_user); # user login for git remote access
 }
 
-function fn_display_variables() {
+function global:fn_display_variables() {
 echo "`$Env:BUILD_REPOSITORY_URI=$Env:BUILD_REPOSITORY_URI";
 echo "`$Env:CORDOVA_DEFAULT_VERSION=$Env:CORDOVA_DEFAULT_VERSION";
 echo "`$Env:appname=$Env:appname";
@@ -60,3 +62,4 @@ echo "`$Env:git_config_username=$Env:git_config_username";
 echo "`$Env:git_pwd=$Env:git_pwd";
 echo "`$Env:git_user=$Env:git_user";
 }
+echo "End loading vsts_cordova.ps1"
