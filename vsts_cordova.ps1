@@ -49,12 +49,12 @@ $Env:variables_status="OK";
 
 #$Env:BUILD_REPOSITORY_URI : come from VSTS Get Ressource Task;
 if ($Env:BUILD_REPOSITORY_URI) {
-$Env:CORDOVA_DEFAULT_VERSION=$(CORDOVA_DEFAULT_VERSION);
-$Env:appname=$(appname);
-$Env:git_config_email=$(git_config_email); # email for GIT commit under VSTS
-$Env:git_config_username=$(git_config_username); # user name for GIT commit under VSTS
-$Env:git_pwd=$(git_pwd); # user pwd for git remote access
-$Env:git_user=$(git_user); # user login for git remote access
+#$Env:CORDOVA_DEFAULT_VERSION=;
+#$Env:appname=; # cordova application name
+#$Env:git_config_email=; # email for GIT commit under VSTS
+#$Env:git_config_username=; # user name for GIT commit under VSTS
+#$Env:git_pwd=; # user pwd for git remote access
+#$Env:git_user=; # user login for git remote access
 
 $Env:git_urlcred="https://$Env:git_user:$Env:git_pwd@$($Env:BUILD_REPOSITORY_URI.ToString().SubString(8))";
 }
