@@ -56,7 +56,7 @@ if ($Env:BUILD_REPOSITORY_URI) {
 #$Env:git_pwd=; # user pwd for git remote access
 #$Env:git_user=; # user login for git remote access
 
-$Env:git_urlcred="https://$Env:git_user:$Env:git_pwd@$($Env:BUILD_REPOSITORY_URI.ToString().SubString(8))";
+$Env:git_urlcred="https://$Env:git_user`:$Env:git_pwd@$($Env:BUILD_REPOSITORY_URI.ToString().SubString(8))";
 }
 else {
 echo "ERROR, missing or empty variable `$Env:BUILD_REPOSITORY_URI";
