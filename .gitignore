@@ -1,0 +1,4 @@
+# GIT ignore following files
+#
+# private file locally
+/vsts_cordova_local.js
