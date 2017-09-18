@@ -92,10 +92,10 @@ process.env.variables_status="OK";
 if (process.env.BUILD_REPOSITORY_URI) {
 //process.env.CORDOVA_DEFAULT_VERSION=;
 //process.env.appname=; // cordova application name
-//process.env.git_config_email=; // email for GIT commit under VSTS
 //process.env.git_config_username=; // user name for GIT commit under VSTS
-//process.env.git_pwd=; // user pwd for git remote access
+//process.env.git_config_email=; // email for GIT commit under VSTS
 //process.env.git_user=; // user login for git remote access
+//process.env.git_pwd=; // user pwd for git remote access
 
 process.env.git_urlcred="https://"+process.env.git_user+":"+process.env.git_pwd+"@"+process.env.BUILD_REPOSITORY_URI.toString().substring(8);
 }
@@ -108,17 +108,15 @@ function fn_display_variables() {
 console.log("$BUILD_REPOSITORY_URI="+process.env.BUILD_REPOSITORY_URI);
 console.log("$CORDOVA_DEFAULT_VERSION="+process.env.CORDOVA_DEFAULT_VERSION);
 console.log("$appname="+process.env.appname);
-console.log("$git_config_email="+process.env.git_config_email);
 console.log("$git_config_username="+process.env.git_config_username);
-console.log("$git_pwd="+process.env.git_pwd);
+console.log("$git_config_email="+process.env.git_config_email);
 console.log("$git_user="+process.env.git_user);
+console.log("$git_pwd="+process.env.git_pwd);
 
 console.log("$git_urlcred="+process.env.git_urlcred);
-
 }
 
 fn_init();
 
 console.log("End " + lc_scriptname)
-
 

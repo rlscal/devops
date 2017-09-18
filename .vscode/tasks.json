@@ -6,7 +6,7 @@
         {
             "taskName": "vsts_cordova init",
             "type": "shell",
-            "command": "node vsts_cordova_local.js --gitinit", // --gitcommitpush \"init module\"",
+            "command": "node vsts_cordova_local_priv.js --gitinit", // --gitcommitpush \"init module\"", // 
             "group": {
                 "kind": "build",
                 "isDefault": true
