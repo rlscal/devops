@@ -2,19 +2,17 @@
 // Usage under VSTS project in nodejs command line
 // 1) After 'Get Ressource' task for initialization (variable and git config):
 // (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/rlscal/devops/master/vsts_cordova.js", "$home\vsts_cordova.js");
-// Import-Module -Name $home\vsts_cordova.js ;
-// fn_gitinit;
+// node $home\vsts_cordova.js gitinit;
 
 // 2) To commmit & push to remote GIT:
-// Import-Module -Name $home\vsts_cordova.js ;
-// fn_gitcommitpush("your comment")
+// node $home\vsts_cordova.js  gitcommitpush "your comment"
 
 console.log("Start loading vsts_cordova.js");
-function global:fn_gitinit() {
+function fn_gitinit() {
 if (! process.env.variables_status) {
-fn_get_vsts_variables;
+fn_get_vsts_variables();
 }
-fn_display_variables;
+fn_display_variables();
 if (process.env.git_urlcred) {
 console.log("remote set-url origin \"$git_urlcred\""); // git remote set-url origin process.env.git_urlcred 2>&1 ;
 console.log("checkout master") ; // git checkout master 2>&1 ;
@@ -28,10 +26,10 @@ console.log("ERROR, missing or empty variable $git_urlcred");
 }
 }
 
-function global:fn_gitcommitpush([string]$commit_msg) {
+function fn_gitcommitpush([string]$commit_msg) {
 if (! process.env.variables_status) {
-fn_get_vsts_variables;
-fn_display_variables;
+fn_get_vsts_variables();
+fn_display_variables();
 }
 if (process.env.git_urlcred) {
 console.log("git add -A"); // git add -A 2>&1;
@@ -43,7 +41,7 @@ console.log("ERROR, missing or empty variable $git_urlcred");
 }
 }
 
-function global:fn_get_vsts_variables() {
+function fn_get_vsts_variables() {
 // define Environment variable used by this module
 process.env.variables_status="OK";
 
@@ -56,14 +54,14 @@ if (process.env.BUILD_REPOSITORY_URI) {
 //process.env.git_pwd=; // user pwd for git remote access
 //process.env.git_user=; // user login for git remote access
 
-process.env.git_urlcred="https://"+process.env.git_user+"\"+process.env.git_pwd+"@"+process.env.BUILD_REPOSITORY_URI.ToString().SubString(8));
+process.env.git_urlcred="https://"+process.env.git_user+":"+process.env.git_pwd+"@"+process.env.BUILD_REPOSITORY_URI.toString().subString(8));
 }
 else {
 console.log("ERROR, missing or empty variable $BUILD_REPOSITORY_URI");
 }
 }
 
-function global:fn_display_variables() {
+function fn_display_variables() {
 console.log("$BUILD_REPOSITORY_URI="+process.env.BUILD_REPOSITORY_URI);
 console.log("$CORDOVA_DEFAULT_VERSION="+process.env.CORDOVA_DEFAULT_VERSION);
 console.log("$appname="+process.env.appname);
@@ -76,3 +74,5 @@ console.log("$git_urlcred="+process.env.git_urlcred);
 
 }
 console.log("End loading vsts_cordova.js")
+
+
