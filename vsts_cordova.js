@@ -50,12 +50,12 @@ fn_get_vsts_variables();
 }
 fn_display_variables();
 if (process.env.git_urlcred) {
-console.log("remote set-url origin \"$git_urlcred\""); // git remote set-url origin process.env.git_urlcred 2>&1 ;
-console.log("checkout master") ; // git checkout master 2>&1 ;
-console.log("git show-branch --all"); // git show-branch --all;
-console.log("git config --global core.autocrlf input"); // git config --global core.autocrlf input 2>&1;
-console.log("git config --global user.name " + process.env.git_config_username); // git config --global user.name process.env.git_config_username;
-console.log("git config --global user.email " + process.env.git_config_email); // git config --global user.email process.env.git_config_email;
+console.log("remote set-url origin \"$git_urlcred\""); git remote set-url origin process.env.git_urlcred  ;
+console.log("checkout master") ; git checkout master ;
+console.log("git show-branch --all"); git show-branch --all;
+console.log("git config --global core.autocrlf input"); git config --global core.autocrlf input ;
+console.log("git config --global user.name " + process.env.git_config_username); git config --global user.name process.env.git_config_username;
+console.log("git config --global user.email " + process.env.git_config_email); git config --global user.email process.env.git_config_email;
 }
 else {
 console.log("ERROR, missing or empty variable $git_urlcred");
@@ -75,9 +75,9 @@ fn_get_vsts_variables();
 fn_display_variables();
 }
 if (process.env.git_urlcred) {
-console.log("git add -A"); // git add -A 2>&1;
-console.log("git commit -m \"" + commit_msg + "\""); // git commit -m "$commit_msg" 2>&1;
-console.log("git push origin master"); // git push origin master 2>&1;
+console.log("git add -A"); git add -A ;
+console.log("git commit -m \"" + commit_msg + "\""); git commit -m "$commit_msg" ;
+console.log("git push origin master"); git push origin master ;
 }
 else {
 console.log("ERROR, missing or empty variable $git_urlcred");
